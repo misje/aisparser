@@ -1,0 +1,7 @@
+.debhelper/
+debhelper-build-stamp
+files
+libais-dev.substvars
+libais-dev/
+libais1.substvars
+libais1

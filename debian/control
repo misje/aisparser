@@ -1,0 +1,22 @@
+Source: libais
+Maintainer: Andreas Misje <>
+Homepage: https://github.com/misje/aisparser
+Section: libs
+Priority: optional
+Standards-Version: 3.9.2
+Build-Depends: debhelper (>= 9)
+Vcs-Git: git://github.com/misje/aisparser
+
+Package: libais1
+Priority: optional
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Architecture: any
+Description: AIS parsing SDK in C
+
+Package: libais-dev
+Priority: optional
+Depends: ${misc:Depends}, libais1 (= ${binary:Version})
+Architecture: all
+Description: AIS parsing SDK in C
+ .
+ This package includes the development support files.

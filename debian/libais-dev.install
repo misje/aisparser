@@ -1,0 +1,6 @@
+c/src/imo.h usr/include/ais/
+c/src/nmea.h usr/include/ais/
+c/src/portable.h usr/include/ais/
+c/src/seaway.h usr/include/ais/
+c/src/sixbit.h usr/include/ais/
+c/src/vdm_parse.h usr/include/ais/

@@ -1,0 +1,7 @@
+libais (1.9.0-2) unstable; urgency=low
+  * Rename variable names confliciting with C++ keywords
+  * Fix mixed space/tab indentation (avoiding compiler warnings)
+  * Add deb packaging files and scripts for C shared library build, along with
+    header files
+
+ -- Andreas Misje <>  Mon, 16 Jul 2018 14:32:02 +0000

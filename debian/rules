@@ -1,0 +1,6 @@
+#!/usr/bin/make -f
+%:
+	dh $@ --parallel --sourcedirectory=c/so
+
+override_dh_auto_build:
+	make -C c/so -j$$(nproc) linux
