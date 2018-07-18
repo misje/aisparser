@@ -7,9 +7,12 @@
 # Please note that this Makefile *needs* GNU make. BSD make won't do.
 #
 
-VERSION = 1.9
+MAJOR = 1
+MINOR = 9
+VERSION = $(MAJOR).$(MINOR)
 
 CC	= gcc
+LN = ln
 CFLAGS	= -I../src -g -Wall -fPIC
 #LIBS	= 
 SRC	= ../src/
@@ -77,6 +80,8 @@ help:
 
 linux:	$(OBJS) $(HDRS) $(OBJS)
 		$(CC) -shared -Wl,-soname,libais.so.1 -o libais.so.$(VERSION) $(OBJS)
+		$(LN) -s libais.so.$(MAJOR).$(MINOR) libais.so.$(MAJOR)
+		$(LN) -s libais.so.$(MAJOR) libais.so
 
 osx:	$(OBJS) $(HDRS) $(OBJS)
 		$(CC) -dynamiclib -Wl,-headerpad_max_install_names,-undefined,dynamic_lookup,-compatibility_version,1.0,-current_version,1.0,-install_name,libais.1.dylib -o libais.1.dylib $(OBJS)
@@ -87,5 +92,7 @@ clean:
 		rm -f $(OBJS)
 		rm -f core *.asc 
 		rm -f libais.so.$(VERSION)
+		rm -f libais.so.$(MAJOR)
+		rm -f libais.so
 		rm -f libais.1.dylib
 
