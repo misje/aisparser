@@ -61,7 +61,7 @@ typedef struct {
     long            longitude;         //!< 25 bits  : Longitude in 1/1000 minute
     long            latitude;          //!< 24 bits  : Latitude in 1/1000 minute
     char            type;              //!< 1 bit    : Water Level Type
-    int			    level;             //!< 16 bits  : Water Level
+    int             level;             //!< 16 bits  : Water Level
     char            datum;             //!< 2 bits   : Reference Datum
     int             spare;             //!< 14 bits  : Reserved for Future Use
 } water_level_report;

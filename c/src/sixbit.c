@@ -23,7 +23,7 @@
     instance, it will setup the structure for parsing. The 6-bit data 
     should then be copied into the sixbit.bits buffer. A maximum of 255
     characters are allowed (this is changed by #SIXBIT_LEN in sixbit.h)
-	
+
     Up to 32 bits of data are fetched from the string by calling get_6bit()
 
     The size of the packet can be calculated with strlen(state->bits) * 6 but
@@ -105,12 +105,12 @@ char __stdcall binfrom6bit( char ascii )
 /* ----------------------------------------------------------------------- */
 char __stdcall binto6bit( char value )
 {
-	if (value > 0x3F )
-		return -1;
-	if (value < 0x28)
-		return value + 0x30;
-	else
-		return value + 0x38;
+    if (value > 0x3F )
+        return -1;
+    if (value < 0x28)
+        return value + 0x30;
+    else
+        return value + 0x38;
 }
 
 

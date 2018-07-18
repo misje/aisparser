@@ -29,8 +29,8 @@ int main( int argc, char *argv[] )
     aismsg_4  msg_4;
     aismsg_5  msg_5;
     aismsg_12 msg_12;
-	aismsg_18 msg_18;
-	aismsg_24 msg_24;
+    aismsg_18 msg_18;
+    aismsg_24 msg_24;
 
     char *test_msgs[] = { "19NS7Sp02wo?HETKA2K6mUM20<L=",
                           "35Mk33gOkSG?bLtK?;B2dRO`00`",
@@ -268,14 +268,14 @@ int main( int argc, char *argv[] )
                 {
                     /* Do something with results */
                     printf( "MMSI     : %09ld\n", msg_24.userid );
-					if (msg_24.flags & 1)
-					{
-						printf("Name : %s\n", msg_24.name );
-					}
-					if (msg_24.flags & 2)
-					{
-						printf("Callsign : %s\n", msg_24.callsign );
-					}
+                    if (msg_24.flags & 1)
+                    {
+                        printf("Name : %s\n", msg_24.name );
+                    }
+                    if (msg_24.flags & 2)
+                    {
+                        printf("Callsign : %s\n", msg_24.callsign );
+                    }
                 } 
                 break;
 
@@ -284,7 +284,7 @@ int main( int argc, char *argv[] )
     }
 
     /* St. Lawrence msg8 testing */
-	test_seaway();
+    test_seaway();
 
     printf("Testing demo_msgs\n");
     
@@ -320,7 +320,7 @@ int main( int argc, char *argv[] )
                     printf("longitude   : %ld\n", msg_1.longitude );
                     printf("latitude    : %ld\n", msg_1.latitude );
                     printf("cog         : %d\n", msg_1.cog );
-                    printf("true        : %d\n", msg_1.true );
+                    printf("true        : %d\n", msg_1.true_heading );
                     printf("utc_sec     : %d\n", msg_1.utc_sec );
                     printf("regional    : %d\n", msg_1.regional );
                     printf("spare       : %d\n", msg_1.spare );
@@ -342,7 +342,7 @@ int main( int argc, char *argv[] )
                     printf("longitude   : %ld\n", msg_3.longitude );
                     printf("latitude    : %ld\n", msg_3.latitude );
                     printf("cog         : %d\n", msg_3.cog );
-                    printf("true        : %d\n", msg_3.true );
+                    printf("true        : %d\n", msg_3.true_heading );
                     printf("utc_sec     : %d\n", msg_3.utc_sec );
                     printf("regional    : %d\n", msg_3.regional );
                     printf("spare       : %d\n", msg_3.spare );
@@ -359,11 +359,11 @@ int main( int argc, char *argv[] )
         printf("\n\n");
     }
 
-	/* Test some possible seaway messages */
-	test_seaway_msgs();
+    /* Test some possible seaway messages */
+    test_seaway_msgs();
 
-	/* Test the seaway and imo messages */
-	test_access();
+    /* Test the seaway and imo messages */
+    test_access();
 
     return 0;
 }

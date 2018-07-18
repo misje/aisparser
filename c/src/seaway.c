@@ -31,46 +31,46 @@
     Includes information like wind information, water level and flow, lock order,
     lock time.
 
-	Example Code:
-	\code
-	ais_state state;
+    Example Code:
+    \code
+    ais_state state;
     aismsg_8  message;
-	sixbit seaway;
-	int dac, fi, spare, msgid;
-	seaway1_3 msg1_3;
+    sixbit seaway;
+    int dac, fi, spare, msgid;
+    seaway1_3 msg1_3;
     unsigned int  result;
     char buf_1[] = "!AIVDM,2,1,2,B,8030ojA?0@=DE3@?BDPA3onQiUFttP1Wh01DE3<1EJ?>0onlkUG0e01I,0*3D";
-	char buf_2[] = "!AIVDM,2,2,2,B,h00,2*7D";
+    char buf_2[] = "!AIVDM,2,2,2,B,h00,2*7D";
 
     memset( &state, 0, sizeof(state) );
     assemble_vdm( &state, buf_1 );
     assemble_vdm( &state, buf_2 );
     state.msgid = (char) get_6bit( &state.six_state, 6 );
-	if (state.msgid == 8 )
-	{
-	    result = parse_ais_8( &state, &message );
+    if (state.msgid == 8 )
+    {
+       result = parse_ais_8( &state, &message );
 
-		// Get the seaway info from the payload of the message 8
-		memset( &seaway, 0, sizeof( seaway ) );
+        // Get the seaway info from the payload of the message 8
+        memset( &seaway, 0, sizeof( seaway ) );
 
-		// Copy the DAC and FI from the message 8 over to seaway
-		dac = message.app_id >> 6;
-		fi = message.app_id & 0x3F; 
-		seaway = message.data;
+        // Copy the DAC and FI from the message 8 over to seaway
+        dac = message.app_id >> 6;
+        fi = message.app_id & 0x3F; 
+        seaway = message.data;
 
-		// Get the Seaway msgid
-		spare = (char) get_6bit( &seaway, 2);
-		msgid = (char) get_6bit( &seaway, 6);
+        // Get the Seaway msgid
+        spare = (char) get_6bit( &seaway, 2);
+        msgid = (char) get_6bit( &seaway, 6);
 
-		// Is it a Water Level Message?
-		if ((fi == 1) && (msgid == 3))
-		{
-			result = parse_seaway1_3( &seaway, &msg1_3);
-			
-			// msg1_3 now holds the water level information
-		}
+        // Is it a Water Level Message?
+        if ((fi == 1) && (msgid == 3))
+        {
+            result = parse_seaway1_3( &seaway, &msg1_3);
+    
+            // msg1_3 now holds the water level information
+        }
     }
-	\endcode
+    \endcode
 
  */
 
@@ -99,7 +99,7 @@ int __stdcall parse_seaway1_1( sixbit *state, seaway1_1 *result )
     if( !result )
         return 1;
 
-	length = sixbit_length(state);
+    length = sixbit_length(state);
     if( (length < 0) || (length > 1008) )
         return 2;
 
@@ -109,7 +109,7 @@ int __stdcall parse_seaway1_1( sixbit *state, seaway1_1 *result )
     for( i=0; i<4; i++ )
     {
         if( get_timetag( state, &result->report[i].utc_time ) )
-			return 3;
+            return 3;
 
         /* Get the Callsign, convert to ASCII */
         j = 0;
@@ -131,15 +131,15 @@ int __stdcall parse_seaway1_1( sixbit *state, seaway1_1 *result )
         result->report[i].visibility= (unsigned char) get_6bit( state, 8 );
         result->report[i].water_temp= (int) get_6bit( state, 10 );
         
-    	/* Convert the position to signed value */
-		result->report[i].longitude *= 10;
-		result->report[i].latitude *= 10;
-    	conv_pos( &result->report[i].latitude, &result->report[i].longitude);
+        /* Convert the position to signed value */
+        result->report[i].longitude *= 10;
+        result->report[i].latitude *= 10;
+        conv_pos( &result->report[i].latitude, &result->report[i].longitude);
 
-		/* Convert the air_temp, dew_point and water_temp to a signed value */
-		conv_sign( 0x0200, &result->report[i].air_temp);
-		conv_sign( 0x0200, &result->report[i].dew_point);
-		conv_sign( 0x0200, &result->report[i].water_temp);
+        /* Convert the air_temp, dew_point and water_temp to a signed value */
+        conv_sign( 0x0200, &result->report[i].air_temp);
+        conv_sign( 0x0200, &result->report[i].dew_point);
+        conv_sign( 0x0200, &result->report[i].water_temp);
 
         /* Is there enough data for another? */
         if( sixbit_length(state) < 192)
@@ -173,7 +173,7 @@ int __stdcall parse_seaway1_2( sixbit *state, seaway1_2 *result )
     if( !result )
         return 1;
 
-	length = sixbit_length(state);
+    length = sixbit_length(state);
     if( (length < 0) || (length > 1008) )
         return 2;
 
@@ -183,7 +183,7 @@ int __stdcall parse_seaway1_2( sixbit *state, seaway1_2 *result )
     for( i=0; i<6; i++ )
     {
         if( get_timetag( state, &result->report[i].utc_time ) )
-			return 3;
+            return 3;
 
         /* Get the Callsign, convert to ASCII */
         j = 0;
@@ -201,10 +201,10 @@ int __stdcall parse_seaway1_2( sixbit *state, seaway1_2 *result )
         result->report[i].direction = (int)  get_6bit( state, 9 );
         result->report[i].spare     = (char) get_6bit( state, 4 );
 
-    	/* Convert the position to signed value */
-		result->report[i].longitude *= 10;
-		result->report[i].latitude *= 10;
-    	conv_pos( &result->report[i].latitude, &result->report[i].longitude);
+        /* Convert the position to signed value */
+        result->report[i].longitude *= 10;
+        result->report[i].latitude *= 10;
+        conv_pos( &result->report[i].latitude, &result->report[i].longitude);
         
         /* Is there enough data for another? */
         if( sixbit_length(state) < 144)
@@ -238,7 +238,7 @@ int __stdcall parse_seaway1_3( sixbit *state, seaway1_3 *result )
     if( !result )
         return 1;
 
-	length = sixbit_length(state);
+    length = sixbit_length(state);
     if( (length < 0) || (length > 1008) )
         return 2;
 
@@ -248,7 +248,7 @@ int __stdcall parse_seaway1_3( sixbit *state, seaway1_3 *result )
     for( i=0; i<6; i++ )
     {
         if( get_timetag( state, &result->report[i].utc_time ) )
-			return 3;
+            return 3;
 
         /* Get the Callsign, convert to ASCII */
         j = 0;
@@ -266,13 +266,13 @@ int __stdcall parse_seaway1_3( sixbit *state, seaway1_3 *result )
         result->report[i].datum     = (char) get_6bit( state, 2 );
         result->report[i].spare     = (int)  get_6bit( state, 14 );
 
-    	/* Convert the position to signed value */
-		result->report[i].longitude *= 10;
-		result->report[i].latitude *= 10;
-    	conv_pos( &result->report[i].latitude, &result->report[i].longitude);
+        /* Convert the position to signed value */
+        result->report[i].longitude *= 10;
+        result->report[i].latitude *= 10;
+        conv_pos( &result->report[i].latitude, &result->report[i].longitude);
 
-		/* Convert level to a signed integer */
-		conv_sign( 0x8000, &result->report[i].level );
+        /* Convert level to a signed integer */
+        conv_sign( 0x8000, &result->report[i].level );
 
         /* Is there enough data for another? */
         if( sixbit_length(state) < 144)
@@ -306,7 +306,7 @@ int __stdcall parse_seaway1_6( sixbit *state, seaway1_6 *result )
     if( !result )
         return 1;
 
-	length = sixbit_length(state);
+    length = sixbit_length(state);
     if( (length < 0) || (length > 1008) )
         return 2;
 
@@ -316,7 +316,7 @@ int __stdcall parse_seaway1_6( sixbit *state, seaway1_6 *result )
     for( i=0; i<6; i++ )
     {
         if( get_timetag( state, &result->report[i].utc_time ) )
-			return 3;
+            return 3;
 
         /* Get the Callsign, convert to ASCII */
         j = 0;
@@ -332,10 +332,10 @@ int __stdcall parse_seaway1_6( sixbit *state, seaway1_6 *result )
         result->report[i].flow      = (int)  get_6bit( state, 14 );
         result->report[i].spare     = (long) get_6bit( state, 19 );
 
-    	/* Convert the position to signed value */
-		result->report[i].longitude *= 10;
-		result->report[i].latitude *= 10;
-    	conv_pos( &result->report[i].latitude, &result->report[i].longitude);
+        /* Convert the position to signed value */
+        result->report[i].longitude *= 10;
+        result->report[i].latitude *= 10;
+        conv_pos( &result->report[i].latitude, &result->report[i].longitude);
 
         /* Is there enough data for another? */
         if( sixbit_length(state) < 144)
@@ -369,7 +369,7 @@ int __stdcall parse_seaway2_1( sixbit *state, seaway2_1 *result )
     if( !result )
         return 1;
 
-	length = sixbit_length(state);
+    length = sixbit_length(state);
     if( (length < 0) || (length > 1008) )
         return 2;
 
@@ -377,7 +377,7 @@ int __stdcall parse_seaway2_1( sixbit *state, seaway2_1 *result )
     memset( result, 0, sizeof( seaway2_1 ) );
 
     if( get_timetag( state, &result->utc_time ) )
-		return 3;
+        return 3;
 
     /* Get the Callsign, convert to ASCII */
     j = 0;
@@ -392,10 +392,10 @@ int __stdcall parse_seaway2_1( sixbit *state, seaway2_1 *result )
     result->latitude  = (long) get_6bit( state, 24 );
     result->spare2    = (int) get_6bit( state, 9 );
 
-   	/* Convert the position to signed value */
-	result->longitude *= 10;
-	result->latitude *= 10;
-   	conv_pos( &result->latitude, &result->longitude);
+    /* Convert the position to signed value */
+    result->longitude *= 10;
+    result->latitude *= 10;
+    conv_pos( &result->latitude, &result->longitude);
 
     for( i=0; i<6; i++ )
     {
@@ -409,8 +409,8 @@ int __stdcall parse_seaway2_1( sixbit *state, seaway2_1 *result )
         result->schedule[i].name[j] = 0;
 
         result->schedule[i].direction = (char) get_6bit( state, 1 );
-		if ( get_timetag( state, &result->schedule[i].eta ) )
-			return 4;
+        if ( get_timetag( state, &result->schedule[i].eta ) )
+            return 4;
         result->schedule[i].spare     = (int)  get_6bit( state, 9 );
 
         /* Is there enough data for another? */
@@ -444,7 +444,7 @@ int __stdcall parse_seaway2_2( sixbit *state, seaway2_2 *result )
     if( !result )
         return 1;
 
-	length = sixbit_length(state);
+    length = sixbit_length(state);
     if( (length < 0) || (length > 1008) )
         return 2;
 
@@ -452,7 +452,7 @@ int __stdcall parse_seaway2_2( sixbit *state, seaway2_2 *result )
     memset( result, 0, sizeof( seaway2_2 ) );
 
     if( get_timetag( state, &result->utc_time ) )
-		return 3;
+        return 3;
 
     /* Get the vessel name, convert to ASCII */
     j = 0;
@@ -473,7 +473,7 @@ int __stdcall parse_seaway2_2( sixbit *state, seaway2_2 *result )
     result->last_location[j] = 0;
 
     if( get_timetag( state, &result->last_ata ) )
-		return 3;
+        return 3;
 
     /* Get the First Lock, convert to ASCII */
     j = 0;
@@ -485,7 +485,7 @@ int __stdcall parse_seaway2_2( sixbit *state, seaway2_2 *result )
     result->first_lock[j] = 0;
 
     if( get_timetag( state, &result->first_eta ) )
-		return 3;
+        return 3;
 
     /* Get the Second Lock, convert to ASCII */
     j = 0;
@@ -497,7 +497,7 @@ int __stdcall parse_seaway2_2( sixbit *state, seaway2_2 *result )
     result->second_lock[j] = 0;
 
     if( get_timetag( state, &result->second_eta ) )
-		return 3;
+        return 3;
 
     /* Get the Delay, convert to ASCII */
     j = 0;
@@ -536,7 +536,7 @@ int __stdcall parse_seaway32_1( sixbit *state, seaway32_1 *result )
     if( !result )
         return 1;
 
-	length = sixbit_length(state);
+    length = sixbit_length(state);
     if( (length < 0) || (length > 1008) )
         return 2;
 
@@ -575,7 +575,7 @@ int __stdcall parse_pawss1_4( sixbit *state, pawss1_4 *result )
     if( !result )
         return 1;
 
-	length = sixbit_length(state);
+    length = sixbit_length(state);
     if( (length < 0) || (length > 1008) )
         return 2;
 
@@ -585,7 +585,7 @@ int __stdcall parse_pawss1_4( sixbit *state, pawss1_4 *result )
     for( i=0; i<6; i++ )
     {
         if( get_timetag( state, &result->report[i].utc_time ) )
-			return 3;
+            return 3;
 
         /* Get the Callsign, convert to ASCII */
         j = 0;
@@ -602,10 +602,10 @@ int __stdcall parse_pawss1_4( sixbit *state, pawss1_4 *result )
         result->report[i].direction = (int) get_6bit( state, 9 );
         result->report[i].spare     = (unsigned int) get_6bit( state, 16 );
 
-    	/* Convert the position to signed value */
-		result->report[i].longitude *= 10;
-		result->report[i].latitude *= 10;
-    	conv_pos( &result->report[i].latitude, &result->report[i].longitude);
+        /* Convert the position to signed value */
+        result->report[i].longitude *= 10;
+        result->report[i].latitude *= 10;
+        conv_pos( &result->report[i].latitude, &result->report[i].longitude);
 
         /* Is there enough data for another? */
         if( sixbit_length(state) < 144)
@@ -639,7 +639,7 @@ int __stdcall parse_pawss1_5( sixbit *state, pawss1_5 *result )
     if( !result )
         return 1;
 
-	length = sixbit_length(state);
+    length = sixbit_length(state);
     if( (length < 0) || (length > 1008) )
         return 2;
 
@@ -649,7 +649,7 @@ int __stdcall parse_pawss1_5( sixbit *state, pawss1_5 *result )
     for( i=0; i<6; i++ )
     {
         if( get_timetag( state, &result->report[i].utc_time ) )
-			return 3;
+            return 3;
 
         /* Get the Callsign, convert to ASCII */
         j = 0;
@@ -666,13 +666,13 @@ int __stdcall parse_pawss1_5( sixbit *state, pawss1_5 *result )
         result->report[i].water_temp= (int) get_6bit( state, 10 );
         result->report[i].spare     = (unsigned int) get_6bit( state, 13 );
 
-    	/* Convert the position to signed value */
-		result->report[i].longitude *= 10;
-		result->report[i].latitude *= 10;
-    	conv_pos( &result->report[i].latitude, &result->report[i].longitude);
+        /* Convert the position to signed value */
+        result->report[i].longitude *= 10;
+        result->report[i].latitude *= 10;
+        conv_pos( &result->report[i].latitude, &result->report[i].longitude);
 
-		/* Convert water temp to signed value */
-		conv_sign( 0x0200, &result->report[i].water_temp);
+        /* Convert water temp to signed value */
+        conv_sign( 0x0200, &result->report[i].water_temp);
 
         /* Is there enough data for another? */
         if( sixbit_length(state) < 144)
@@ -706,7 +706,7 @@ int __stdcall parse_pawss2_3( sixbit *state, pawss2_3 *result )
     if( !result )
         return 1;
 
-	length = sixbit_length(state);
+    length = sixbit_length(state);
     if( (length < 0) || (length > 1008) )
         return 2;
 
@@ -714,7 +714,7 @@ int __stdcall parse_pawss2_3( sixbit *state, pawss2_3 *result )
     memset( result, 0, sizeof( pawss2_3 ) );
 
     if( get_timetag( state, &result->utc_time ) )
-		return 3;
+        return 3;
 
     /* Get the Direction, convert to ASCII */
     j = 0;
@@ -729,10 +729,10 @@ int __stdcall parse_pawss2_3( sixbit *state, pawss2_3 *result )
     result->latitude  = (long) get_6bit( state, 24 );
     result->spare2 = (char)  get_6bit( state, 3 );
 
-   	/* Convert the position to signed value */
-	result->longitude *= 10;
-	result->latitude *= 10;
-   	conv_pos( &result->latitude, &result->longitude);
+    /* Convert the position to signed value */
+    result->longitude *= 10;
+    result->latitude *= 10;
+    conv_pos( &result->latitude, &result->longitude);
 
     for( i=0; i<4; i++ )
     {

@@ -42,10 +42,10 @@ typedef struct {
     char            level_2;           //!< 5 bits   : Measuring level 0-30m
     char            speed_3;           //!< 8 bits   : Current measured at chosen level 0.0 to 25.0 kts
     int             dir_3;             //!< 9 bits   : Current direction 0-359 degrees
-	char            level_3;           //!< 5 bits   : Measuring level 0-30m
+    char            level_3;           //!< 5 bits   : Measuring level 0-30m
     char            wave_height;       //!< 8 bits   : 0.0 to 25.0 m
     char            wave_period;       //!< 6 bits   : Period in second 0-60
-	int				wave_dir;          //!< 9 bits   : 0-359 degrees
+    int             wave_dir;          //!< 9 bits   : 0-359 degrees
     char            swell_height;      //!< 8 bits   : 0.0 to 25.0 m
     char            swell_period;      //!< 6 bits   : Period in second 0-60
     int             swell_dir;         //!< 9 bits   : 0-359 degrees
@@ -62,11 +62,11 @@ typedef struct {
 */
 typedef struct {
     char            last_port[7];      //!< 5x6 (30) bits : Last Port of Call UN Locode
-    timetag			atd;               //!< 20 bits  : Actual Time of Departure
+    timetag         atd;               //!< 20 bits  : Actual Time of Departure
     char            next_port[7];      //!< 5x6 (30) bits : Last Port of Call UN Locode
-    timetag			eta;               //!< 20 bits  : Estimated Time of Arrival
+    timetag         eta;               //!< 20 bits  : Estimated Time of Arrival
     char            good[21];          //!< 20x6 (120) bits : Main Dangerous Good
-    char			imd[6];            //!< 4x6 (24) bits : IMD Category of Main Dangerous Good
+    char            imd[6];            //!< 4x6 (24) bits : IMD Category of Main Dangerous Good
     int             un_number;         //!< 13 bits  : UN Number 1-3363  0=not available
     int             quantity;          //!< 10 bits  : Quantity of Main Dangerous Good 
     char            units;             //!< 2 bits   : 0=not avail. 1=kg 2=tons (1E3kg) 3=1000tons(1E6kg)
@@ -129,10 +129,10 @@ typedef struct {
 /** Application 6 - Number of Persons on Board
 */
 typedef struct {
-	int             num_persons;       //!< 13 bits  : Number of Persons on Board 0-8191 0=not available
-	char            spare;             //!< 3 bits   : spare
+   int             num_persons;       //!< 13 bits  : Number of Persons on Board 0-8191 0=not available
+   char            spare;             //!< 3 bits   : spare
 } imo1_16;
-	
+
 
 /** Pseudo-AIS Targets used by imo1_17
 */
@@ -147,15 +147,15 @@ typedef struct {
     char            spare;             //!< 4 bits  : spare
     long            latitude;          //!< 24 bits  : Latitude in 1/1000 minute
     long            longitude;         //!< 25 bits  : Longitude in 1/1000 minute
-	int             cog;               //!< 9 bits   : Course over ground 0-359 degrees 360=not available
-	char            timestamp;         //!< 6 bits   : UTC Second when generated 60=not available
-	unsigned char   sog;               //!< 8 bits   : Speed over ground 0-254kts 255=not available		
-}  pseudo_target;
+    int             cog;               //!< 9 bits   : Course over ground 0-359 degrees 360=not available
+    char            timestamp;         //!< 6 bits   : UTC Second when generated 60=not available
+    unsigned char   sog;               //!< 8 bits   : Speed over ground 0-254kts 255=not available
+} pseudo_target;
 
 /** Application 6 - Number of Persons on Board
 */
 typedef struct {
-	pseudo_target   targets[4];        //!< 1-4 targets
+   pseudo_target   targets[4];        //!< 1-4 targets
 } imo1_17;
 
 

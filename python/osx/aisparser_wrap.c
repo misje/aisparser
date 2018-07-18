@@ -4553,7 +4553,7 @@ SWIGINTERN PyObject *_wrap_aismsg_1_true_set(PyObject *SWIGUNUSEDPARM(self), PyO
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "aismsg_1_true_set" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = (int)(val2);
-  if (arg1) (arg1)->true = arg2;
+  if (arg1) (arg1)->true_heading = arg2;
   
   resultobj = SWIG_Py_Void();
   return resultobj;
@@ -4576,7 +4576,7 @@ SWIGINTERN PyObject *_wrap_aismsg_1_true_get(PyObject *SWIGUNUSEDPARM(self), PyO
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "aismsg_1_true_get" "', argument " "1"" of type '" "aismsg_1 *""'"); 
   }
   arg1 = (aismsg_1 *)(argp1);
-  result = (int) ((arg1)->true);
+  result = (int) ((arg1)->true_heading);
   resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
@@ -5549,7 +5549,7 @@ SWIGINTERN PyObject *_wrap_aismsg_2_true_set(PyObject *SWIGUNUSEDPARM(self), PyO
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "aismsg_2_true_set" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = (int)(val2);
-  if (arg1) (arg1)->true = arg2;
+  if (arg1) (arg1)->true_heading = arg2;
   
   resultobj = SWIG_Py_Void();
   return resultobj;
@@ -5572,7 +5572,7 @@ SWIGINTERN PyObject *_wrap_aismsg_2_true_get(PyObject *SWIGUNUSEDPARM(self), PyO
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "aismsg_2_true_get" "', argument " "1"" of type '" "aismsg_2 *""'"); 
   }
   arg1 = (aismsg_2 *)(argp1);
-  result = (int) ((arg1)->true);
+  result = (int) ((arg1)->true_heading);
   resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
@@ -6545,7 +6545,7 @@ SWIGINTERN PyObject *_wrap_aismsg_3_true_set(PyObject *SWIGUNUSEDPARM(self), PyO
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "aismsg_3_true_set" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = (int)(val2);
-  if (arg1) (arg1)->true = arg2;
+  if (arg1) (arg1)->true_heading = arg2;
   
   resultobj = SWIG_Py_Void();
   return resultobj;
@@ -6568,7 +6568,7 @@ SWIGINTERN PyObject *_wrap_aismsg_3_true_get(PyObject *SWIGUNUSEDPARM(self), PyO
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "aismsg_3_true_get" "', argument " "1"" of type '" "aismsg_3 *""'"); 
   }
   arg1 = (aismsg_3 *)(argp1);
-  result = (int) ((arg1)->true);
+  result = (int) ((arg1)->true_heading);
   resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
@@ -17774,7 +17774,7 @@ SWIGINTERN PyObject *_wrap_aismsg_18_true_set(PyObject *SWIGUNUSEDPARM(self), Py
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "aismsg_18_true_set" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = (int)(val2);
-  if (arg1) (arg1)->true = arg2;
+  if (arg1) (arg1)->true_heading = arg2;
   
   resultobj = SWIG_Py_Void();
   return resultobj;
@@ -17797,7 +17797,7 @@ SWIGINTERN PyObject *_wrap_aismsg_18_true_get(PyObject *SWIGUNUSEDPARM(self), Py
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "aismsg_18_true_get" "', argument " "1"" of type '" "aismsg_18 *""'"); 
   }
   arg1 = (aismsg_18 *)(argp1);
-  result = (int) ((arg1)->true);
+  result = (int) ((arg1)->true_heading);
   resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
@@ -19375,7 +19375,7 @@ SWIGINTERN PyObject *_wrap_aismsg_19_true_set(PyObject *SWIGUNUSEDPARM(self), Py
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "aismsg_19_true_set" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = (int)(val2);
-  if (arg1) (arg1)->true = arg2;
+  if (arg1) (arg1)->true_heading = arg2;
   
   resultobj = SWIG_Py_Void();
   return resultobj;
@@ -19398,7 +19398,7 @@ SWIGINTERN PyObject *_wrap_aismsg_19_true_get(PyObject *SWIGUNUSEDPARM(self), Py
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "aismsg_19_true_get" "', argument " "1"" of type '" "aismsg_19 *""'"); 
   }
   arg1 = (aismsg_19 *)(argp1);
-  result = (int) ((arg1)->true);
+  result = (int) ((arg1)->true_heading);
   resultobj = SWIG_From_int((int)(result));
   return resultobj;
 fail:
@@ -22227,7 +22227,7 @@ SWIGINTERN PyObject *_wrap_aismsg_21_virtual_set(PyObject *SWIGUNUSEDPARM(self),
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "aismsg_21_virtual_set" "', argument " "2"" of type '" "char""'");
   } 
   arg2 = (char)(val2);
-  if (arg1) (arg1)->virtual = arg2;
+  if (arg1) (arg1)->virtual_aton = arg2;
   
   resultobj = SWIG_Py_Void();
   return resultobj;
@@ -22250,7 +22250,7 @@ SWIGINTERN PyObject *_wrap_aismsg_21_virtual_get(PyObject *SWIGUNUSEDPARM(self),
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "aismsg_21_virtual_get" "', argument " "1"" of type '" "aismsg_21 *""'"); 
   }
   arg1 = (aismsg_21 *)(argp1);
-  result = (char) ((arg1)->virtual);
+  result = (char) ((arg1)->virtual_aton);
   resultobj = SWIG_From_char((char)(result));
   return resultobj;
 fail:

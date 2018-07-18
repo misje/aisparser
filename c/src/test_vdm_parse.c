@@ -377,7 +377,7 @@ int test_ais_1( void )
         return 0;
     }
 
-    if( message.true != 174 )
+    if( message.true_heading != 174 )
     {
         fprintf( stderr, "test_ais_1() failed: true\n");
         return 0;
@@ -512,7 +512,7 @@ int test_ais_3( void )
         return 0;
     }
 
-    if( message.true != 79 )
+    if( message.true_heading != 79 )
     {
         fprintf( stderr, "test_ais_3() failed: true\n");
         return 0;
@@ -1433,7 +1433,7 @@ int test_ais_18( void )
         return 0;
     }
 
-    if( message.true != 511 )
+    if( message.true_heading != 511 )
     {
         fprintf( stderr, "test_ais_18() failed: true\n");
         return 0;
@@ -1827,53 +1827,53 @@ int test_ais_24B( void )
         return 0;
     }
 
-	if( message.ship_type != 37 )
-	{
-	    fprintf( stderr, "test_ais_24B() failed: ship_type\n");
-	    return 0;
-	}
+    if( message.ship_type != 37 )
+    {
+        fprintf( stderr, "test_ais_24B() failed: ship_type\n");
+        return 0;
+    }
 
-	if( strcmp( message.vendor_id, "@@@@@@@")  != 0 )
-	{
-	    fprintf( stderr, "test_ais_24B() failed: vendor_id\n");
-	    return 0;
-	}
+    if( strcmp( message.vendor_id, "@@@@@@@")  != 0 )
+    {
+        fprintf( stderr, "test_ais_24B() failed: vendor_id\n");
+        return 0;
+    }
 
-	if( strcmp( message.callsign, "@@@@@@@")  != 0 )
-	{
-	    fprintf( stderr, "test_ais_24B() failed: callsign\n");
-	    return 0;
-	}
+    if( strcmp( message.callsign, "@@@@@@@")  != 0 )
+    {
+        fprintf( stderr, "test_ais_24B() failed: callsign\n");
+        return 0;
+    }
 
-	if( message.dim_bow != 2 )
-	{
-	    fprintf( stderr, "test_ais_24B() failed: dim_bow\n");
-	    return 0;
-	}
+    if( message.dim_bow != 2 )
+    {
+        fprintf( stderr, "test_ais_24B() failed: dim_bow\n");
+        return 0;
+    }
 
-	if( message.dim_stern != 5 )
-	{
-	    fprintf( stderr, "test_ais_24B() failed: dim_stern\n");
-	    return 0;
-	}
+    if( message.dim_stern != 5 )
+    {
+        fprintf( stderr, "test_ais_24B() failed: dim_stern\n");
+        return 0;
+    }
 
-	if( message.dim_port != 1 )
-	{
-	    fprintf( stderr, "test_ais_24B() failed: dim_port\n");
-	    return 0;
-	}
+    if( message.dim_port != 1 )
+    {
+        fprintf( stderr, "test_ais_24B() failed: dim_port\n");
+        return 0;
+    }
 
-	if( message.dim_starboard != 2 )
-	{
-	    fprintf( stderr, "test_ais_24B() failed: dim_starboard\n");
-	    return 0;
-	}
+    if( message.dim_starboard != 2 )
+    {
+        fprintf( stderr, "test_ais_24B() failed: dim_starboard\n");
+        return 0;
+    }
 
-	if( message.spare != 0 )
-	{
-	    fprintf( stderr, "test_ais_24B() failed: spare\n");
-	    return 0;
-	}
+    if( message.spare != 0 )
+    {
+        fprintf( stderr, "test_ais_24B() failed: spare\n");
+        return 0;
+    }
 
     fprintf( stderr, "test_ais_24B() passed\n");
     return 1;

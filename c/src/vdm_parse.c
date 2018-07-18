@@ -159,34 +159,34 @@
 /* ----------------------------------------------------------------------- */
 int __stdcall get_timetag( sixbit *state, timetag *datetime )
 {
-	int	length;
-	
+    int length;
+
     if ( !state )
         return 1;
     if ( !datetime )
         return 1;
 
-	length = sixbit_length(state);
+    length = sixbit_length(state);
     if ( length < 20 )
         return 2;
 
-	datetime->month   = (char) get_6bit( state, 4 );
-	datetime->day     = (char) get_6bit( state, 5 );
-	datetime->hours   = (char) get_6bit( state, 5 );
-	datetime->minutes = (char) get_6bit( state, 6 );
-	
-	return 0;
+    datetime->month   = (char) get_6bit( state, 4 );
+    datetime->day     = (char) get_6bit( state, 5 );
+    datetime->hours   = (char) get_6bit( state, 5 );
+    datetime->minutes = (char) get_6bit( state, 6 );
+
+    return 0;
 }
 
 
 /* ----------------------------------------------------------------------- */
 /** Convert a 2's complement value to a signed integer value
 
-	@param sign_bit
-	@param value pointer to value
-	
-	eg. to convert a 10 bit 2's complement:
-		conv_sign( 0x00200, &temp );
+  @param sign_bit
+  @param value pointer to value
+
+  eg. to convert a 10 bit 2's complement:
+  conv_sign( 0x00200, &temp );
 */
 /* ----------------------------------------------------------------------- */
 void __stdcall conv_sign( unsigned int sign_bit, int *value )
@@ -516,7 +516,7 @@ int __stdcall parse_ais_1( ais_state *state, aismsg_1 *result )
     result->longitude    = (long)          get_6bit( &state->six_state, 28 );
     result->latitude     = (long)          get_6bit( &state->six_state, 27 );
     result->cog          = (int)           get_6bit( &state->six_state, 12 );
-    result->true         = (int)           get_6bit( &state->six_state, 9  );
+    result->true_heading = (int)           get_6bit( &state->six_state, 9  );
     result->utc_sec      = (char)          get_6bit( &state->six_state, 6  );
     result->regional     = (char)          get_6bit( &state->six_state, 4  );
     result->spare        = (char)          get_6bit( &state->six_state, 1  );
@@ -577,7 +577,7 @@ int __stdcall parse_ais_2( ais_state *state, aismsg_2 *result )
     result->longitude    = (long)          get_6bit( &state->six_state, 28 );
     result->latitude     = (long)          get_6bit( &state->six_state, 27 );
     result->cog          = (int)           get_6bit( &state->six_state, 12 );
-    result->true         = (int)           get_6bit( &state->six_state, 9  );
+    result->true_heading = (int)           get_6bit( &state->six_state, 9  );
     result->utc_sec      = (char)          get_6bit( &state->six_state, 6  );
     result->regional     = (char)          get_6bit( &state->six_state, 4  );
     result->spare        = (char)          get_6bit( &state->six_state, 1  );
@@ -635,7 +635,7 @@ int __stdcall  parse_ais_3( ais_state *state, aismsg_3 *result )
     result->longitude      = (long)          get_6bit( &state->six_state, 28 );
     result->latitude       = (long)          get_6bit( &state->six_state, 27 );
     result->cog            = (int)           get_6bit( &state->six_state, 12 );
-    result->true           = (int)           get_6bit( &state->six_state, 9  );
+    result->true_heading   = (int)           get_6bit( &state->six_state, 9  );
     result->utc_sec        = (char)          get_6bit( &state->six_state, 6  );
     result->regional       = (char)          get_6bit( &state->six_state, 4  );
     result->spare          = (char)          get_6bit( &state->six_state, 1  );
@@ -839,7 +839,7 @@ int __stdcall  parse_ais_6( ais_state *state, aismsg_6 *result )
     result->app_id       = (unsigned int)   get_6bit( &state->six_state, 16 );
 
     /* Store the remaining payload of the packet for further processing */
-	result->data = state->six_state;
+    result->data = state->six_state;
 
     return 0;
 }
@@ -955,7 +955,7 @@ int __stdcall  parse_ais_8( ais_state *state, aismsg_8 *result )
     result->app_id       = (unsigned int)   get_6bit( &state->six_state, 16 );
 
     /* Store the remaining payload of the packet for further processing */
-	result->data = state->six_state;
+    result->data = state->six_state;
 
     return 0;
 }
@@ -1479,7 +1479,7 @@ int __stdcall  parse_ais_17( ais_state *state, aismsg_17 *result )
     result->health       = (char)           get_6bit( &state->six_state, 3  );
 
     /* Store the remaining payload of the packet for further processing */
-	result->data = state->six_state;
+    result->data = state->six_state;
 
     /* Convert the position to signed value */
     conv_pos( &result->latitude, &result->longitude);
@@ -1529,7 +1529,7 @@ int __stdcall  parse_ais_18( ais_state *state, aismsg_18 *result )
     result->longitude      = (long)          get_6bit( &state->six_state, 28 );
     result->latitude       = (long)          get_6bit( &state->six_state, 27 );
     result->cog            = (int)           get_6bit( &state->six_state, 12 );
-    result->true           = (int)           get_6bit( &state->six_state, 9  );
+    result->true_heading   = (int)           get_6bit( &state->six_state, 9  );
     result->utc_sec        = (char)          get_6bit( &state->six_state, 6  );
     result->regional2      = (char)          get_6bit( &state->six_state, 2  );
     result->unit_flag      = (char)          get_6bit( &state->six_state, 1  );
@@ -1604,7 +1604,7 @@ int __stdcall  parse_ais_19( ais_state *state, aismsg_19 *result )
     result->longitude      = (long)          get_6bit( &state->six_state, 28 );
     result->latitude       = (long)          get_6bit( &state->six_state, 27 );
     result->cog            = (int)           get_6bit( &state->six_state, 12 );
-    result->true           = (int)           get_6bit( &state->six_state, 9  );
+    result->true_heading   = (int)           get_6bit( &state->six_state, 9  );
     result->utc_sec        = (char)          get_6bit( &state->six_state, 6  );
     result->regional2      = (char)          get_6bit( &state->six_state, 4  );
 
@@ -1773,7 +1773,7 @@ int __stdcall  parse_ais_21( ais_state *state, aismsg_21 *result )
     result->off_position  = (char)          get_6bit( &state->six_state, 1  );
     result->regional      = (unsigned char) get_6bit( &state->six_state, 8  );
     result->raim          = (char)          get_6bit( &state->six_state, 1  );
-    result->virtual       = (char)          get_6bit( &state->six_state, 1  );
+    result->virtual_aton  = (char)          get_6bit( &state->six_state, 1  );
     result->assigned      = (char)          get_6bit( &state->six_state, 1  );
     result->spare1        = (char)          get_6bit( &state->six_state, 1  );
 
@@ -1957,7 +1957,7 @@ int __stdcall  parse_ais_23( ais_state *state, aismsg_23 *result )
        memset( result, 0, sizeof( aismsg_24 ));
     \endcode
 
-	before passing a message 24A to the parse_ais_24() function.
+    before passing a message 24A to the parse_ais_24() function.
 
     Message 24 is a 2 part message. The first part only contains the MMSI
     and the ship name. The second message contains the ship dimensions, 
