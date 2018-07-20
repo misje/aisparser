@@ -16,7 +16,7 @@ Description: AIS parsing SDK in C
 Package: libais-dev
 Priority: optional
 Depends: ${misc:Depends}, libais1 (= ${binary:Version})
-Architecture: all
+Architecture: any
 Description: AIS parsing SDK in C
  .
  This package includes the development support files.
