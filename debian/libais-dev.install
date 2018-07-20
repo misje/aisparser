@@ -4,3 +4,4 @@ c/src/portable.h usr/include/ais/
 c/src/seaway.h usr/include/ais/
 c/src/sixbit.h usr/include/ais/
 c/src/vdm_parse.h usr/include/ais/
+c/so/libais.so usr/lib/
