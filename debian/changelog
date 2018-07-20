@@ -1,7 +1,15 @@
-libais (1.9.0-2) unstable; urgency=low
+aisparser (1.9.0-3) unstable; urgency=low
+  * Move .so symlink from lib package to -dev package
+  * Add copyright file
+  * Fix minor issues in deb control file
+  * Add -doc package
+
+ -- Andreas Misje <amisje@gmail.com>  Fri, 20 Jul 2018 21:44:40 +0200
+
+aisparser (1.9.0-2) unstable; urgency=low
   * Rename variable names confliciting with C++ keywords
   * Fix mixed space/tab indentation (avoiding compiler warnings)
   * Add deb packaging files and scripts for C shared library build, along with
     header files
 
- -- Andreas Misje <>  Mon, 16 Jul 2018 14:32:02 +0000
+ -- Andreas Misje <amisje@gmail.com>  Mon, 16 Jul 2018 14:32:02 +0000

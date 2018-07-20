@@ -2,5 +2,11 @@
 %:
 	dh $@ --parallel --sourcedirectory=c/so
 
-override_dh_auto_build:
+override_dh_auto_build-arch:
 	make -C c/so -j$$(nproc) linux
+
+override_dh_auto_build-indep:
+	cd c/docs && doxygen doxygen.conf
+
+override_dh_clean:
+	dh_clean -- c/docs/html/
