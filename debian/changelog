@@ -1,3 +1,9 @@
+aisparser (1.9.0-4) unstable; urgency=low
+  * Fix global-files-wildcard-not-first-paragraph-in-dep5-copyright lintian
+    warning
+
+ -- Andreas Misje <amisje@gmail.com>  Tue, 31 Jul 2018 20:53:08 +0200
+
 aisparser (1.9.0-3) unstable; urgency=low
   * Move .so symlink from lib package to -dev package
   * Add copyright file
