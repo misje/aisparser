@@ -10,6 +10,7 @@ Vcs-Git: git://github.com/misje/aisparser
 Package: libais1
 Priority: optional
 Depends: ${misc:Depends}, ${shlibs:Depends}
+Replaces: libais
 Architecture: any
 Description: AIS parsing SDK in C
  C SDK for parsing AIVDM sentences, IMO binary messages and St. Lawrence Seaway
