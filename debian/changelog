@@ -1,3 +1,9 @@
+aisparser (1.9.0-5) unstable; urgency=low
+  * Add "replaces: libais" to resolves conflicts with old experimental libais
+    packages with out major version number part of packages name
+
+ -- Andreas Misje <amisje@gmail.com>  Wed, 16 Jan 2019 10:27:38 +0100
+
 aisparser (1.9.0-4) unstable; urgency=low
   * Fix global-files-wildcard-not-first-paragraph-in-dep5-copyright lintian
     warning
